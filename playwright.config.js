@@ -8,7 +8,8 @@ module.exports = defineConfig({
   // The public demo site can be slow - give assertions a bit longer than the 5s default
   expect: { timeout: 10_000 },
   fullyParallel: true,
-  retries: process.env.CI ? 2 : 0,
+  // The public demo site is occasionally slow, so retry a failed test once locally (twice on CI)
+  retries: process.env.CI ? 2 : 1,
   reporter: [['html', { open: 'never' }], ['list']],
   use: {
     baseURL: 'https://ecommerce-playground.lambdatest.io',
